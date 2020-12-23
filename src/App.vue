@@ -26,16 +26,34 @@
         </div>
         <h3>tabs</h3>
         <div class="tabs-container">
-
+           <c-tab :tab-data="tabData"></c-tab>
         </div>
     </div>
 </template>
 
 <script>
 import CIcon from "@compos/cIcon";
+import CTab from "@compos/cTab";
+
 export default {
+  data() {
+    return {
+      tabData: [
+        {
+          name: "All"
+        },
+        {
+          name: "Physical"
+        },
+        {
+          name: "Virtual"
+        }
+      ]
+    };
+  },
   components: {
-    CIcon
+    CIcon,
+    CTab
   }
 };
 

@@ -52,9 +52,8 @@ describe("cTab", () => {
         tabItems[1].click();
 
         Vue.nextTick(() => {
-            console.log("aaa");
-            expect(tabItems[1].getAttribute("class")).to.include(".c-tab__item--active");
-            expect(tabItems[0].getAttribute("class")).to.not.include(".c-tab__item--active");
+            expect(tabItems[1].getAttribute("class")).to.include("c-tab__item--active");
+            expect(tabItems[0].getAttribute("class")).to.not.include("c-tab__item--active");
             done();
         });
 
