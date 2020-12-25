@@ -64,6 +64,9 @@ module.exports = {
         mainFiles: ['index'],
         alias: {
             "@compos": path.resolve(__dirname, "../src/components"),
+            "@assets": path.resolve(__dirname, "../src/assets"),
+            "@api": path.resolve(__dirname, "../src/api"),
+            "@utils": path.resolve(__dirname, "../src/utils")
         }
     }
 };

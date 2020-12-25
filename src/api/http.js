@@ -13,7 +13,7 @@ function requestGenerator(method, contentType, handleRequest, parseResponse = JS
         return new Promise((resolve, reject) => {
             const request = new XMLHttpRequest();
             if (method === "GET") {
-                request.open(method, url + "?" + transferToFormURL(data));
+                request.open(method, handleUrl(url, data));
                 data_copy = null
             } else {
                 request.open(method, url)
@@ -46,6 +46,13 @@ function requestGenerator(method, contentType, handleRequest, parseResponse = JS
             }
         });
     };
+}
+
+function handleUrl(url, data) {
+    if (Object.keys(data).length > 0) {
+        return url + "?" + transferToFormURL;
+    }
+    return url;
 }
 
 export function transferToFormURL(data) {
@@ -83,7 +90,7 @@ const multiRequest = {
     put: requestGenerator("PUT", undefined, transferToMultipart)
 };
 
-export default {
+export {
     getRequest,
     deleteRequest,
     jsonRequest,

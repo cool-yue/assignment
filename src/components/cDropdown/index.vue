@@ -1,6 +1,9 @@
 <template>
     <div class="c-dropdown" v-if="items.length > 0">
-         <div @click="showItem=!showItem" class="c-dropdown__link"><slot>下拉菜单</slot></div>
+         <div @click="showItem=!showItem" class="c-dropdown__link">
+            <div class="c-dropdown__logo"><slot>下拉菜单</slot></div>
+            <c-icon type="angle-down" :style="{visibility:(showItem?'visible':'hidden')}"></c-icon>
+         </div>
          <div class="c-dropdown__main" v-show="showItem" :style="{width:`${width}px`,left:`${left}px`}">
             <c-dropdown-item
                 v-for="(item, i) in items"
@@ -12,6 +15,7 @@
 </template>
 <script>
 import cDropdownItem from "./modules/cDropdownItem.vue"
+import cIcon from "@compos/cIcon";
 export default {
     name: "cDropdown",
     data() {
@@ -30,11 +34,12 @@ export default {
         },
         left: {
             type: Number,
-            default: 0
+            default: -90
         }
     },
     components: {
-        cDropdownItem
+        cDropdownItem,
+        cIcon
     },
     methods: {
         handleClick() {
@@ -45,15 +50,21 @@ export default {
 </script>
 <style>
 .c-dropdown {
-    padding: 0.5em 0;
     display: inline-block;
     position: relative;
 }
 .c-dropdown__main {
     position: absolute;
-    padding: 0.5em 1em;
+    background-color:white;
+    line-height: 40px;
+    z-index: 3;
 }
 .c-dropdown__link {
     cursor: pointer;
+    line-height:40px;
+}
+.c-dropdown__logo {
+    vertical-align: middle;
+    display: inline-block;
 }
 </style>

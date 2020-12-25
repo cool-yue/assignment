@@ -1,5 +1,5 @@
 <template>
-   <button :class="['c-button', `c-button--${type}`]" @click="handleClick">
+   <button :class="['c-button', `c-button--${type}`]" @click="handleClick($event)">
        <c-icon v-if="type==='deny' || type==='plus'" :type="type"></c-icon>
        <span class="c-button__text"><slot></slot></span>
    </button>
@@ -21,8 +21,10 @@ export default {
         }
     },
     methods: {
-        handleClick() {
-            this.$emit("click");
+        handleClick(e) {
+            const x = e.clientX;
+            const y = e.clientY
+            this.$emit("click", e);
         }
     },
     components: {

@@ -23,6 +23,7 @@ export default {
 .c-board {
     display: inline-block;
     padding: 1em;
+    background-color: white;
 }
 .c-board__item {
     display: inline-block;

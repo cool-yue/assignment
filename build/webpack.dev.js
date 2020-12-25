@@ -10,11 +10,14 @@ module.exports = merge(common, {
         hot: true,
         historyApiFallback: true,
         proxy: {
-          '/api': 'http://10.6.172.179:9091', // 设置你调用的接口域名和端口号
-          ws:true,
-          changeOrigin:true,
-          pathRewrite:{
-            '^/api':'/api'
+          '/api':  {
+            target: 'http://localhost:3001',
+            ws:true,
+            changeOrigin:true,
+            pathRewrite: {
+              //'^/api':'/api'
+              '^/api': ''
+            }
           }
         }
       }

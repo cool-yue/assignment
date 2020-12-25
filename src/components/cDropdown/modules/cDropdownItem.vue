@@ -29,7 +29,6 @@ export default {
 <style>
 .c-dropdown-item {
     cursor: pointer;
-    padding: 0.5em 0;
 }
 .c-dropdown-item:hover {
     background-color: #efefef;

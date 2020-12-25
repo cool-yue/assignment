@@ -10,7 +10,7 @@
     </div>
 </template>
 <script>
-import CIcon from "@compos/CIcon";
+import CIcon from "@compos/cIcon";
 export default {
     components: {
         CIcon
