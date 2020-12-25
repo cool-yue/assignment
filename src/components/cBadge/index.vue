@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: "cBadge",
+    name: "CBadge",
     functional: true,
     props: {
         type: {
@@ -12,16 +12,16 @@ export default {
         const type = context.props.type;
         const baseClass = {
             "c-badge": true,
-        }
+        };
         if (type) {
             baseClass[`c-badge--${type}`] = true;
         }
         return createElement(
             "span",
-             {
-                 class: baseClass
-             },
-             `${type}`
+            {
+                class: baseClass
+            },
+            `${type}`
         );
     }
 };

@@ -1,25 +1,39 @@
 <template>
-<div class="agent-item">
+  <div class="agent-item">
     <div class="agent-item__logo">
-        <img :src="osImg" />
+      <img :src="osImg">
     </div>
     <div class="agent-item__info">
-         <div class="agent-item__basic">
-             <c-icon type="desktop"></c-icon>
-             <span>{{item.name}}</span>
-             <c-badge :type="item.status"></c-badge>
-             <c-icon type="info"></c-icon>
-             <span>{{item.ip}}</span>
-             <c-icon type="folder"></c-icon>
-             <span>{{item.location}}</span>
-         </div>
-         <div class="agent-item__source">
-            <c-button type="plus" @click="handlePlus"></c-button>
-            <agent-source v-for="(resource, i) in item.resources" :source="resource" :key="i" :index="i" @click="handleDelete"></agent-source>
-            <c-button type="deny" v-if="item.status!=='idle'">Deny</c-button>
-         </div>
+      <div class="agent-item__basic">
+        <c-icon type="desktop" />
+        <span>{{ item.name }}</span>
+        <c-badge :type="item.status" />
+        <c-icon type="info" />
+        <span>{{ item.ip }}</span>
+        <c-icon type="folder" />
+        <span>{{ item.location }}</span>
+      </div>
+      <div class="agent-item__source">
+        <c-button
+          type="plus"
+          @click="handlePlus"
+        />
+        <agent-source
+          v-for="(resource, i) in item.resources"
+          :key="i"
+          :source="resource"
+          :index="i"
+          @click="handleDelete"
+        />
+        <c-button
+          v-if="item.status!=='idle'"
+          type="deny"
+        >
+          Deny
+        </c-button>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 <script>
 import CBadge from "@compos/cBadge";
@@ -31,14 +45,28 @@ import {getDomPosition} from "@utils/utils.position.js";
 import {modifyAgent} from "@api/agent.js";
 
 export default {
-    name: "agentItem",
+    name: "AgentItem",
+    components: {
+        CBadge,
+        AgentSource,
+        CButton,
+        CIcon
+    },
+    props: {
+        item: {
+            type: Object,
+            default: () => {
+                return {};
+            }
+        }
+    },
     data() {
         return {
-             windows: require("@assets/images/windows.png"),
-             suse: require("@assets/images/suse.png"),
-             centos: require("@assets/images/cent_os.png"),
-             ubuntu: require("@assets/images/ubuntu.png"),
-             debian: require("@assets/images/debin.png")
+            windows: require("@assets/images/windows.png"),
+            suse: require("@assets/images/suse.png"),
+            centos: require("@assets/images/cent_os.png"),
+            ubuntu: require("@assets/images/ubuntu.png"),
+            debian: require("@assets/images/debin.png")
         };
     },
     computed: {
@@ -55,30 +83,16 @@ export default {
         },
         handleDelete(index) {
             modifyAgent(this.item.id, this.handleDeleteData(index)).then(res => {
-                this.$emit("refresh")
+                this.$emit("refresh");
             }).catch(console.error);
 
         },
         handleDeleteData(index) {
             const copy = this.item.resources.slice();
             copy.splice(index, 1);
-            const deleteObj = Object.assign({}, this.item, {resources:copy});
+            const deleteObj = Object.assign({}, this.item, {resources: copy});
             return deleteObj;
         }
-    },
-    props: {
-        item: {
-            type: Object,
-            default: () => {
-                return {}
-            }
-        }
-    },
-    components: {
-        CBadge,
-        AgentSource,
-        CButton,
-        CIcon
     }
 };
 </script>

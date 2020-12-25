@@ -1,6 +1,6 @@
 <script>
 export default {
-    name: "cAvatar",
+    name: "CAvatar",
     functional: true,
     props: {
         source: {

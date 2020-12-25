@@ -1,13 +1,23 @@
 <template>
-    <div class="c-brick" :style="{backgroundColor:bgColor}">
-        <div class="c-brick__icon">
-            <c-icon :type="iconType" :class="rotate?'c-brick__rotate':''"></c-icon>
-        </div>
-        <div class="c-brick__content">
-            <div class="c-brick__title">{{title}}</div>
-            <div class="c-brick__number">{{number}}</div>
-        </div>
+  <div
+    class="c-brick"
+    :style="{backgroundColor:bgColor}"
+  >
+    <div class="c-brick__icon">
+      <c-icon
+        :type="iconType"
+        :class="rotate?'c-brick__rotate':''"
+      />
     </div>
+    <div class="c-brick__content">
+      <div class="c-brick__title">
+        {{ title }}
+      </div>
+      <div class="c-brick__number">
+        {{ number }}
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import CIcon from "@compos/cIcon";
@@ -16,20 +26,26 @@ export default {
         CIcon
     },
     props: {
-        title: String,
-        number: Number,
+        title: {
+            type: String,
+            default: ""
+        },
+        number: {
+            type: Number,
+            default: 0
+        },
         rotate: Boolean
     },
     computed: {
         iconType() {
-            if (this.title==="building") {
+            if (this.title === "building") {
                 return "cog";
             } else {
                 return "coffee";
             }
         },
         bgColor() {
-            if (this.title==="building") {
+            if (this.title === "building") {
                 return "#ff9a2a";
             } else {
                 return "#7fbc39";

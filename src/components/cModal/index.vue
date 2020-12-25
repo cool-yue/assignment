@@ -1,28 +1,47 @@
 <template>
-    <div class="c-modal" :style="{left:`${left}px`,top:`${top}px`}" v-if="show">
-        <div class="c-modal-close">
-            <c-icon type="close" style="cursor:pointer;" @click="handleClose"></c-icon>
-        </div>
-        <div class="c-modal__tip">
-            <span>Seperate Multiple Resource with commas</span>
-        </div>
-        <div class="c-modal__main">
-            <input type="text"  class="c-modal__input" v-model="source" placeholder="input value"/>
-        </div>
-        <div class="c-modal__buttons">
-             <c-button @click="handleSubmit">Add Resource</c-button>
-             <c-button type="cancel" @click="handleClose">Cancel</c-button>
-        </div>
+  <div
+    v-if="show"
+    class="c-modal"
+    :style="{left:`${left}px`,top:`${top}px`}"
+  >
+    <div class="c-modal-close">
+      <c-icon
+        type="close"
+        style="cursor:pointer;"
+        @click="handleClose"
+      />
     </div>
+    <div class="c-modal__tip">
+      <span>Seperate Multiple Resource with commas</span>
+    </div>
+    <div class="c-modal__main">
+      <input
+        v-model="source"
+        type="text"
+        class="c-modal__input"
+        placeholder="input value"
+      >
+    </div>
+    <div class="c-modal__buttons">
+      <c-button @click="handleSubmit">
+        Add Resource
+      </c-button>
+      <c-button
+        type="cancel"
+        @click="handleClose"
+      >
+        Cancel
+      </c-button>
+    </div>
+  </div>
 </template>
 <script>
 import CButton from "@compos/cButton";
 import CIcon from "@compos/cIcon";
 export default {
-    data() {
-        return {
-            source: ""
-        };
+    components: {
+        CButton,
+        CIcon
     },
     props: {
         left: {
@@ -38,9 +57,17 @@ export default {
             default: false
         }
     },
-    components: {
-        CButton,
-        CIcon
+    data() {
+        return {
+            source: ""
+        };
+    },
+    watch: {
+        show(v) {
+            if (v === false) {
+                this.source = "";
+            }
+        }
     },
     methods: {
         handleClose() {
@@ -49,13 +76,6 @@ export default {
         },
         handleSubmit() {
             this.$emit("submit", this.source.split(","));
-        }
-    },
-    watch: {
-        show(v) {
-            if(v === false) {
-                this.source= "";
-            }
         }
     }
 };

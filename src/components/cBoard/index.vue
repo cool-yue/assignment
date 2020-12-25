@@ -1,14 +1,22 @@
 <template>
-    <div class="c-board">
-        <div class="c-board__item" v-for="(item, i) in boardData" :key="i">
-            <div class="c-board__title">{{item.title}}</div>
-            <div class="c-board__number">{{item.number}}</div>
-        </div>
+  <div class="c-board">
+    <div
+      v-for="(item, i) in boardData"
+      :key="i"
+      class="c-board__item"
+    >
+      <div class="c-board__title">
+        {{ item.title }}
+      </div>
+      <div class="c-board__number">
+        {{ item.number }}
+      </div>
     </div>
+  </div>
 </template>
 <script>
 export default {
-    name: "cBoard",
+    name: "CBoard",
     props: {
         boardData: {
             type: Array,

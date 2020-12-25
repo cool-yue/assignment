@@ -32,7 +32,7 @@ function createVm(options) {
 
 describe("CSidebar", () => {
     it("props navList render", () => {
-       const vm = createVm(CSidebar);
+        const vm = createVm(CSidebar);
 
         vm.$mount();
         const navList = vm.$el.querySelectorAll(".c-sidebar__item");

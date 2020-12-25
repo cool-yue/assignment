@@ -1,13 +1,13 @@
 <template>
-<div class="app">
+  <div class="app">
     <layout />
-</div>
+  </div>
 </template>
 <script>
 import Layout from "./layout.vue";
 export default {
     components: {
-      Layout
+        Layout
     }
 };
 </script>

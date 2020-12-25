@@ -1,14 +1,20 @@
 <template>
-   <button :class="['c-button', `c-button--${type}`]" @click="handleClick($event)">
-       <c-icon v-if="type==='deny' || type==='plus'" :type="type"></c-icon>
-       <span class="c-button__text"><slot></slot></span>
-   </button>
+  <button
+    :class="['c-button', `c-button--${type}`]"
+    @click="handleClick($event)"
+  >
+    <c-icon
+      v-if="type==='deny' || type==='plus'"
+      :type="type"
+    />
+    <span class="c-button__text"><slot /></span>
+  </button>
 </template>
 <script>
 import CIcon from "../cIcon";
 export default {
-    data() {
-        return {};
+    components: {
+        CIcon
     },
     props: {
         type: {
@@ -20,15 +26,15 @@ export default {
             default: false
         }
     },
+    data() {
+        return {};
+    },
     methods: {
         handleClick(e) {
             const x = e.clientX;
-            const y = e.clientY
+            const y = e.clientY;
             this.$emit("click", e);
         }
-    },
-    components: {
-        CIcon
     }
 };
 </script>

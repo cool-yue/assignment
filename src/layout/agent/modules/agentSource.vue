@@ -1,13 +1,23 @@
 <template>
-    <span class="agent-source" v-if="source">
-        {{source}}
-        <c-icon type="trash" @click="handleClick" class="agent-source__delete"></c-icon>
-    </span>
+  <span
+    v-if="source"
+    class="agent-source"
+  >
+    {{ source }}
+    <c-icon
+      type="trash"
+      class="agent-source__delete"
+      @click="handleClick"
+    />
+  </span>
 </template>
 <script>
 import CIcon from "@compos/cIcon";
 export default {
-    name: "agentSource",
+    name: "AgentSource",
+    components: {
+        CIcon
+    },
     props: {
         source: {
             type: String,
@@ -18,12 +28,9 @@ export default {
             default: -1
         }
     },
-    components: {
-        CIcon
-    },
     methods: {
         handleClick() {
-            this.$emit("click", this.index)
+            this.$emit("click", this.index);
         }
     }
 };

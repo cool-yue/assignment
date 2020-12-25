@@ -1,9 +1,12 @@
 <template>
-    <span :class="iconClass" @click="handleClick"></span>
+  <span
+    :class="iconClass"
+    @click="handleClick"
+  />
 </template>
 <script>
 export default {
-    name: "cIcon",
+    name: "CIcon",
     props: {
         type: {
             type: String,

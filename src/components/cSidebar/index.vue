@@ -1,24 +1,22 @@
 <template>
-    <div class="c-sidebar">
-        <div
-            :class="['c-sidebar__item', activeIndex === i ?'c-sidebar__item--active':'']"
-            v-for="(item, i) in navList"
-            :key="i"
-            @click="hanldeClick(item.title, i)"
-        >
-             <c-icon :type="item.icon"></c-icon>
-             <span>{{item.title}}</span>
-        </div>
+  <div class="c-sidebar">
+    <div
+      v-for="(item, i) in navList"
+      :key="i"
+      :class="['c-sidebar__item', activeIndex === i ?'c-sidebar__item--active':'']"
+      @click="hanldeClick(item.title, i)"
+    >
+      <c-icon :type="item.icon" />
+      <span>{{ item.title }}</span>
     </div>
+  </div>
 </template>
 <script>
 import CIcon from "@compos/cIcon";
 export default {
-    name: "cSidebar",
-    data() {
-        return {
-            activeIndex: 0
-        };
+    name: "CSidebar",
+    components: {
+        CIcon
     },
     props: {
         navList: {
@@ -28,8 +26,10 @@ export default {
             }
         }
     },
-    components: {
-        CIcon
+    data() {
+        return {
+            activeIndex: 0
+        };
     },
     methods: {
         hanldeClick(info, index) {

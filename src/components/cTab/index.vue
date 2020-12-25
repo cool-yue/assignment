@@ -1,21 +1,18 @@
 <template>
-    <div class="c-tab">
-        <div
-            :class="['c-tab__item', currentIndex === i ? 'c-tab__item--active' : '']"
-            v-for="(item, i) in tabData"
-            :key="i"
-            @click="handleClick(i)"
-        >{{item.name}}</div>
+  <div class="c-tab">
+    <div
+      v-for="(item, i) in tabData"
+      :key="i"
+      :class="['c-tab__item', currentIndex === i ? 'c-tab__item--active' : '']"
+      @click="handleClick(i)"
+    >
+      {{ item.name }}
     </div>
+  </div>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            currentIndex: 0
-        };
-    },
-    name: "cTab",
+    name: "CTab",
     props: {
         tabData: {
             type: Array,
@@ -23,6 +20,11 @@ export default {
                 return [];
             }
         }
+    },
+    data() {
+        return {
+            currentIndex: 0
+        };
     },
     methods: {
         handleClick(i) {

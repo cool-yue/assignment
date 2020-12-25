@@ -14,9 +14,9 @@ function requestGenerator(method, contentType, handleRequest, parseResponse = JS
             const request = new XMLHttpRequest();
             if (method === "GET") {
                 request.open(method, handleUrl(url, data));
-                data_copy = null
+                data_copy = null;
             } else {
-                request.open(method, url)
+                request.open(method, url);
             }
 
             contentType && request.setRequestHeader("Content-Type", contentType);
@@ -26,17 +26,17 @@ function requestGenerator(method, contentType, handleRequest, parseResponse = JS
                     if (request.status === 200) {
                         resolve(parseResponse(request.response));
                     } else {
-                        reject(request.status + " " + request.statusText)
+                        reject(request.status + " " + request.statusText);
                     }
                 } catch (e) {
                     reject(e.message);
                 }
             };
-            request.onerror = function() {
+            request.onerror = function () {
                 reject(response.status + " " + this.statusText);
             };
 
-            request.ontimeout = function() {
+            request.ontimeout = function () {
                 reject("timeout!");
             };
             if (typeof handleRequest === "function") {
@@ -82,7 +82,7 @@ const jsonRequest = {
 
 const formRequest = {
     post: requestGenerator("POST", "application/x-www-form-urlencoded", transferToFormURL),
-    put:  requestGenerator("PUT", "application/x-www-form-urlencoded", transferToFormURL)
+    put: requestGenerator("PUT", "application/x-www-form-urlencoded", transferToFormURL)
 };
 
 const multiRequest = {

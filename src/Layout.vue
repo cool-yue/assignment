@@ -1,29 +1,34 @@
 <template>
-    <div class="layout">
-        <div class="layout__header">
-            <img src="./assets/images/logo.svg" class="layout__logo" />
-            <c-dropdown
-               :items="items"
-               class="layout-avatar"
-            >
-                <c-avatar :source="avatar"></c-avatar>
-            </c-dropdown>
-        </div>
-        <div class="layout__main">
-             <div class="layout__sidebar">
-                 <div class="layout__nav">
-                    <c-sidebar :nav-list="navList"></c-sidebar>
-                 </div>
-                 <div class="layout__history">
-                    <c-history :history-list="historyList"></c-history>
-                 </div>
-             </div>
-            <div class="layout__content">
-                <components :is="currentLayout" />
-            </div>
-        </div>
-        <div class="layout__footer">copyright 2017 thoughtworks</div>
+  <div class="layout">
+    <div class="layout__header">
+      <img
+        src="./assets/images/logo.svg"
+        class="layout__logo"
+      >
+      <c-dropdown
+        :items="items"
+        class="layout-avatar"
+      >
+        <c-avatar :source="avatar" />
+      </c-dropdown>
     </div>
+    <div class="layout__main">
+      <div class="layout__sidebar">
+        <div class="layout__nav">
+          <c-sidebar :nav-list="navList" />
+        </div>
+        <div class="layout__history">
+          <c-history :history-list="historyList" />
+        </div>
+      </div>
+      <div class="layout__content">
+        <components :is="currentLayout" />
+      </div>
+    </div>
+    <div class="layout__footer">
+      copyright 2017 thoughtworks
+    </div>
+  </div>
 </template>
 <script>
 import Agent from "./layout/agent";
@@ -33,6 +38,14 @@ import CDropdown from "@compos/cDropdown";
 import CSidebar from "@compos/cSidebar";
 import CHistory from "@compos/cHistory";
 export default {
+    components: {
+        Agent,
+        ComponentList,
+        CDropdown,
+        CAvatar,
+        CHistory,
+        CSidebar
+    },
     data() {
         return {
             avatar: require("./assets/images/sponge.png"),
@@ -95,14 +108,6 @@ export default {
                 }
             ]
         };
-    },
-    components: {
-        Agent,
-        ComponentList,
-        CDropdown,
-        CAvatar,
-        CHistory,
-        CSidebar
     }
 };
 </script>

@@ -1,8 +1,6 @@
-<template>
-</template>
 <script>
 export default {
-    name: "agentList"
+    name: "AgentList"
 };
 </script>
 <style></style>

@@ -1,14 +1,23 @@
 <template>
-    <ul class="c-history" v-if="historyList.length > 0">
-        <h3 class="c-history__title">History</h3>
-        <li v-for="(item, i) in historyList" :key="i" class="c-history__item">
-        {{item.title}}
-        </li>
-    </ul>
+  <ul
+    v-if="historyList.length > 0"
+    class="c-history"
+  >
+    <h3 class="c-history__title">
+      History
+    </h3>
+    <li
+      v-for="(item, i) in historyList"
+      :key="i"
+      class="c-history__item"
+    >
+      {{ item.title }}
+    </li>
+  </ul>
 </template>
 <script>
 export default {
-    name: "cHistory",
+    name: "CHistory",
     props: {
         historyList: {
             type: Array,

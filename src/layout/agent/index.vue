@@ -1,42 +1,55 @@
 <template>
-<div class="agent">
+  <div class="agent">
     <div class="agent__header">
-        <c-brick
-            title="building"
-            :number="8"
-            rotate
-        ></c-brick>
-        <c-brick
-            title="idle"
-            :number="4"
-        ></c-brick>
-        <c-board :board-data="boardData"></c-board>
+      <c-brick
+        title="building"
+        :number="8"
+        rotate
+      />
+      <c-brick
+        title="idle"
+        :number="4"
+      />
+      <c-board :board-data="boardData" />
     </div>
     <div class="agent__toolbar">
-        <c-tab :tab-data="tabData"></c-tab>
-        <c-input type="search" class="agent__input"></c-input>
-        <div class="agent__showmode">
-            <c-icon type="th-card"></c-icon>
-            <c-icon type="th-list" class="agent__icon--active"></c-icon>
-        </div>
+      <c-tab :tab-data="tabData" />
+      <c-input
+        type="search"
+        class="agent__input"
+      />
+      <div class="agent__showmode">
+        <c-icon type="th-card" />
+        <c-icon
+          type="th-list"
+          class="agent__icon--active"
+        />
+      </div>
     </div>
     <div class="agent__content">
-        <agent-item
-            v-for="(item, i) in agents"
-            :key="item.id" :item="item"
-            @add-resource="handleAddResource"
-            @refresh="handleRefresh"
-            ></agent-item>
+      <agent-item
+        v-for="(item, i) in agents"
+        :key="i"
+        :item="item"
+        @add-resource="handleAddResource"
+        @refresh="handleRefresh"
+      />
     </div>
-    <c-modal :show="showModal" :left="modalLeft" :top="modalTop" @close="hanldeCloseModal" @submit="handleSubmitResource"/>
-</div>
+    <c-modal
+      :show="showModal"
+      :left="modalLeft"
+      :top="modalTop"
+      @close="hanldeCloseModal"
+      @submit="handleSubmitResource"
+    />
+  </div>
 </template>
 <script>
 import CIcon from "@compos/cIcon";
 import CTab from "@compos/cTab";
 import CButton from "@compos/cButton";
 import CBadge from "@compos/cBadge";
-import CBoard from  "@compos/cBoard";
+import CBoard from "@compos/cBoard";
 import CInput from "@compos/cInput";
 import CModal from "@compos/cModal";
 import CBrick from "@compos/cBrick";
@@ -48,7 +61,16 @@ import AgentItem from "./modules/agentItem.vue";
 import {getAgents, modifyAgent} from "@api/agent.js";
 
 export default {
-    name:"agent",
+    name: "Agent",
+    components: {
+        CBoard,
+        CBrick,
+        CTab,
+        CInput,
+        CIcon,
+        AgentItem,
+        CModal
+    },
     data() {
         return {
             currentItem: null,
@@ -61,43 +83,38 @@ export default {
                     number: 8
                 },
                 {
-                   title: "Physical",
-                   number: 4
+                    title: "Physical",
+                    number: 4
                 },
                 {
-                   title: "Virtual",
-                   number: 4
+                    title: "Virtual",
+                    number: 4
                 }
             ],
             tabData: [
                 {
-                name: "All"
+                    name: "All"
                 },
                 {
-                name: "Physical"
+                    name: "Physical"
                 },
                 {
-                name: "Virtual"
+                    name: "Virtual"
                 }
             ],
             agents: []
         };
     },
-    components: {
-        CBoard,
-        CBrick,
-        CTab,
-        CInput,
-        CIcon,
-        AgentItem,
-        CModal
+    mounted() {
+        this.getAgentsAndrender();
+        console.log(document);
     },
     methods: {
         handleAddResource(data) {
-             this.modalLeft = data.x;
-             this.modalTop = data.y;
-             this.currentItem = Object.assign({}, data.item);
-             this.showModal = !this.showModal;
+            this.modalLeft = data.x;
+            this.modalTop = data.y;
+            this.currentItem = Object.assign({}, data.item);
+            this.showModal = !this.showModal;
         },
         hanldeCloseModal(value) {
             this.showModal = value;
@@ -110,7 +127,7 @@ export default {
             }).catch(console.error);
         },
         handleRefresh() {
-             this.getAgentsAndrender();
+            this.getAgentsAndrender();
         },
         getAgentsAndrender() {
             getAgents().then(res => {
@@ -121,16 +138,12 @@ export default {
         },
         handlePutRequestData(data) {
             const putData = Object.assign({}, this.currentItem);
-            putData.resources =  putData.resources.concat(data).slice();
+            putData.resources = putData.resources.concat(data).slice();
             return putData;
         },
         getId() {
             return this.currentItem.id;
         }
-    },
-    mounted() {
-        this.getAgentsAndrender();
-        console.log(document);
     }
 };
 </script>

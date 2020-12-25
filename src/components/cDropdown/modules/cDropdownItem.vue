@@ -1,16 +1,19 @@
 <template>
-    <div class="c-dropdown-item" @click="handleClick">
-        <c-icon :type="item.icon"></c-icon>
-        <span>{{item.title}}</span>
-    </div>
+  <div
+    class="c-dropdown-item"
+    @click="handleClick"
+  >
+    <c-icon :type="item.icon" />
+    <span>{{ item.title }}</span>
+  </div>
 </template>
 <script>
 import CIcon from "@compos/cIcon";
 export default {
-    name: "cDropdownItem",
+    name: "CDropdownItem",
     components: {
         CIcon
-     },
+    },
     props: {
         item: {
             type: Object,

@@ -1,8 +1,16 @@
 <template>
-    <div class="c-input">
-        <c-icon type="search" v-if="type==='search'"></c-icon>
-        <input @input="handleInput($event)" type="text" :value="value" class="c-input__input"/>
-    </div>
+  <div class="c-input">
+    <c-icon
+      v-if="type==='search'"
+      type="search"
+    />
+    <input
+      type="text"
+      :value="value"
+      class="c-input__input"
+      @input="handleInput($event)"
+    >
+  </div>
 </template>
 <script>
 import CIcon from "../cIcon";
@@ -24,7 +32,7 @@ export default {
         handleInput(e) {
             console.log("input事件触发");
             console.log(e.target.value);
-            this.$emit("input", e.target.value)
+            this.$emit("input", e.target.value);
         }
     }
 };
