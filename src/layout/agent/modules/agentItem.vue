@@ -15,7 +15,7 @@
          </div>
          <div class="agent-item__source">
             <c-button type="plus" @click="handlePlus"></c-button>
-            <agent-source v-for="(resource, i) in item.resources" :source="resource" :key="i"></agent-source>
+            <agent-source v-for="(resource, i) in item.resources" :source="resource" :key="i" :index="i" @click="handleDelete"></agent-source>
             <c-button type="deny" v-if="item.status!=='idle'">Deny</c-button>
          </div>
     </div>
@@ -27,7 +27,8 @@ import CButton from "@compos/cButton";
 import CIcon from "@compos/cIcon";
 import AgentSource from "./agentSource.vue";
 
-import {getDomPosition} from "@utils/utils.position.js"
+import {getDomPosition} from "@utils/utils.position.js";
+import {modifyAgent} from "@api/agent.js";
 
 export default {
     name: "agentItem",
@@ -48,7 +49,21 @@ export default {
     methods: {
         handlePlus(e) {
             const dom = e.target;
-            this.$emit("add-resource", getDomPosition(dom));
+            const data = getDomPosition(dom);
+            data.item = this.item;
+            this.$emit("add-resource", data);
+        },
+        handleDelete(index) {
+            modifyAgent(this.item.id, this.handleDeleteData(index)).then(res => {
+                this.$emit("refresh")
+            }).catch(console.error);
+
+        },
+        handleDeleteData(index) {
+            const copy = this.item.resources.slice();
+            copy.splice(index, 1);
+            const deleteObj = Object.assign({}, this.item, {resources:copy});
+            return deleteObj;
         }
     },
     props: {

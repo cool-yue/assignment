@@ -39,7 +39,7 @@ function requestGenerator(method, contentType, handleRequest, parseResponse = JS
             request.ontimeout = function() {
                 reject("timeout!");
             };
-            if (typeof handleData === "function") {
+            if (typeof handleRequest === "function") {
                 request.send(handleRequest(data_copy));
             } else {
                 request.send(data_copy);

@@ -12,6 +12,10 @@ export default {
         source: {
             type: String,
             default: ""
+        },
+        index: {
+            type: Number,
+            default: -1
         }
     },
     components: {
@@ -19,7 +23,7 @@ export default {
     },
     methods: {
         handleClick() {
-            this.emit("click", this.source)
+            this.$emit("click", this.index)
         }
     }
 };

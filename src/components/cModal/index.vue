@@ -10,7 +10,7 @@
             <input type="text"  class="c-modal__input" v-model="source" placeholder="input value"/>
         </div>
         <div class="c-modal__buttons">
-             <c-button>Add Resource</c-button>
+             <c-button @click="handleSubmit">Add Resource</c-button>
              <c-button type="cancel" @click="handleClose">Cancel</c-button>
         </div>
     </div>
@@ -46,6 +46,9 @@ export default {
         handleClose() {
             this.source = "";
             this.$emit("close", false);
+        },
+        handleSubmit() {
+            this.$emit("submit", this.source.split(","));
         }
     },
     watch: {

@@ -21,9 +21,14 @@
         </div>
     </div>
     <div class="agent__content">
-        <agent-item v-for="(item, i) in agents" :key="item.id" :item="item" @add-resource="handleAddResource"></agent-item>
+        <agent-item
+            v-for="(item, i) in agents"
+            :key="item.id" :item="item"
+            @add-resource="handleAddResource"
+            @refresh="handleRefresh"
+            ></agent-item>
     </div>
-    <c-modal :show="showModal" :left="modalLeft" :top="modalTop" @close="hanldeCloseModal" @submit-resource="handleSubmitResource"/>
+    <c-modal :show="showModal" :left="modalLeft" :top="modalTop" @close="hanldeCloseModal" @submit="handleSubmitResource"/>
 </div>
 </template>
 <script>
@@ -46,7 +51,7 @@ export default {
     name:"agent",
     data() {
         return {
-            currentId: null,
+            currentItem: null,
             modalLeft: 0,
             modalTop: 0,
             showModal: false,
@@ -88,28 +93,43 @@ export default {
         CModal
     },
     methods: {
-        handleAddResource(position, id) {
-             this.modalLeft = position.x;
-             this.modalTop = position.y;
+        handleAddResource(data) {
+             this.modalLeft = data.x;
+             this.modalTop = data.y;
+             this.currentItem = Object.assign({}, data.item);
              this.showModal = !this.showModal;
-             this.currentId = id;
         },
         hanldeCloseModal(value) {
-            console.log("点击关闭",value);
             this.showModal = value;
         },
         handleSubmitResource(data) {
-            modifyAgent(this.currentId, data).then(res => {
+            modifyAgent(this.getId(), this.handlePutRequestData(data)).then(res => {
                 console.log(res);
+                this.showModal = false;
+                this.getAgentsAndrender();
             }).catch(console.error);
+        },
+        handleRefresh() {
+             this.getAgentsAndrender();
+        },
+        getAgentsAndrender() {
+            getAgents().then(res => {
+                this.agents = res.slice();
+            }).catch(err => {
+                console.log("err", err);
+            });
+        },
+        handlePutRequestData(data) {
+            const putData = Object.assign({}, this.currentItem);
+            putData.resources =  putData.resources.concat(data).slice();
+            return putData;
+        },
+        getId() {
+            return this.currentItem.id;
         }
     },
     mounted() {
-        getAgents().then(res => {
-            this.agents = res.slice();
-        }).catch(err => {
-            console.log("err", err);
-        });
+        this.getAgentsAndrender();
         console.log(document);
     }
 };
