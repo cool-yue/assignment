@@ -37,7 +37,7 @@ body{
     -webkit-user-select: none;
     /* iPhone 和 Android 的浏览器纵向 (Portrate mode) 和橫向 (Landscape mode) 模式皆有自动调整字体大小的功能。控制它的就是 CSS 中的 -webkit-text-size-adjust。关闭字体大小自动调整功能*/
     -webkit-text-size-adjust: 100%;
-    font-size: 16px;
+    font-size: 14px;
     color: #25242a;
     height: 100%;
     font-family: helvetica,"Microsoft YaHei";

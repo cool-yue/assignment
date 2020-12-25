@@ -2,10 +2,9 @@ function getDomPosition(dom) {
     if (!dom) {
         return;
     }
-    const rect = dom.getBoundingClientRect();
     return {
-        x: rect.left,
-        y: rect.top
+        x: dom.offsetLeft - 24,
+        y: dom.offsetTop + 44
     };
 }
 

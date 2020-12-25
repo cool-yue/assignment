@@ -19,10 +19,15 @@
         class="agent__input"
       />
       <div class="agent__showmode">
-        <c-icon type="th-card" />
+        <c-icon 
+          type="th-card"
+          :class="!columnMode?'agent__icon--active':''"
+          @click="columnMode=false"
+        />
         <c-icon
           type="th-list"
-          class="agent__icon--active"
+          :class="columnMode?'agent__icon--active':''"
+          @click="columnMode=true"
         />
       </div>
     </div>
@@ -34,14 +39,15 @@
         @add-resource="handleAddResource"
         @refresh="handleRefresh"
       />
+      <c-modal
+        :show="showModal"
+        :left="modalLeft"
+        :top="modalTop"
+        trigger="icon-plus"
+        @close="hanldeCloseModal"
+        @submit="handleSubmitResource"
+      />
     </div>
-    <c-modal
-      :show="showModal"
-      :left="modalLeft"
-      :top="modalTop"
-      @close="hanldeCloseModal"
-      @submit="handleSubmitResource"
-    />
   </div>
 </template>
 <script>
@@ -73,6 +79,7 @@ export default {
     },
     data() {
         return {
+            columnMode: true,
             currentItem: null,
             modalLeft: 0,
             modalTop: 0,
@@ -163,11 +170,14 @@ export default {
     margin-top: 16px;
     background-color: white;
     display: flex;
+    align-items: center;
     line-height: 50px;
 
 }
 .agent__input {
-
+    margin-left: 2em;
+    color: #ccc;
+    width: 160px;
 }
 
 .agent__icon--active {
@@ -179,5 +189,11 @@ export default {
     margin-top: 16px;
     height: 0;
     overflow: auto;
+    position: relative;
+}
+.agent__showmode {
+    font-size: 20px;
+    padding-right: 16px;
+    margin-left: auto;
 }
 </style>

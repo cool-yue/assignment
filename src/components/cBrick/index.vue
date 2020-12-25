@@ -99,6 +99,8 @@ export default {
 }
 
 .c-brick__title {
+    padding-left: 1em;
+    padding-top: 0.8em;
     font-size: 18px;
     font-weight: bold;
     color: white;
@@ -108,6 +110,8 @@ export default {
     text-align: right;
     font-size: 48px;
     color: white;
+    padding-top: 16px;
+    padding-right: 32px;
 }
 
 

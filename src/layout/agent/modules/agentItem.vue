@@ -16,6 +16,7 @@
       <div class="agent-item__source">
         <c-button
           type="plus"
+          class="agent-item__plus"
           @click="handlePlus"
         />
         <agent-source
@@ -41,6 +42,7 @@ import CButton from "@compos/cButton";
 import CIcon from "@compos/cIcon";
 import AgentSource from "./agentSource.vue";
 
+
 import {getDomPosition} from "@utils/utils.position.js";
 import {modifyAgent} from "@api/agent.js";
 
@@ -50,7 +52,7 @@ export default {
         CBadge,
         AgentSource,
         CButton,
-        CIcon
+        CIcon,
     },
     props: {
         item: {
@@ -101,12 +103,30 @@ export default {
     display: flex;
     background-color: white;
     margin-bottom: 16px;
+    padding: 1em;
 }
 .agent-item__basic {
     display: flex;
+    padding-top: 0.5em;
     justify-content: space-between;
-},
+    align-items: center;
+}
+.agent-item__logo {
+    margin-right: 1em;
+}
 .agent-item__info {
     flex: 1;
+}
+.agent-item__source {
+  padding-top: 2em;
+  display: flex;
+  align-items: center;
+}
+.agent-item__plus {
+  height: 28px;
+  font-size: 18px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-right: 1em;
 }
 </style>

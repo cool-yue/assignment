@@ -30,7 +30,7 @@ export default {
 <style>
 .c-badge {
     font-size: 14px;
-    padding:0.2em 1em;
+    padding:0.1em 0.5em;
     height: 1.5em;
     line-height: 1.5em;
     color: white;

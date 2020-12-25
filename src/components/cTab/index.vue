@@ -36,20 +36,19 @@ export default {
 <style>
 .c-tab {
     display: inline-block;
-    border: 1px solid #ccc;
     height: 50px;
 }
 .c-tab__item {
     display: inline-block;
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #efefef;
     padding: 0 1em;
     line-height: 50px;
     height: 50px;
     cursor: pointer;
 }
-.c-tab__item:last-child {
+/* .c-tab__item:last-child {
     border-right: 0;
-}
+} */
 .c-tab__item--active {
     border-bottom: 3px solid #00b4cf;
 }

@@ -30,9 +30,9 @@ describe("cTab", () => {
         const length = tabItems.length;
 
         expect(length).to.equal(3);
-        expect(tabItems[0].textContent).to.equal("a");
-        expect(tabItems[1].textContent).to.equal("b");
-        expect(tabItems[2].textContent).to.equal("c");
+        expect(tabItems[0].textContent).to.include("a");
+        expect(tabItems[1].textContent).to.include("b");
+        expect(tabItems[2].textContent).to.include("c");
     });
 
     it("default highlight first one", () => {

@@ -7,7 +7,7 @@
       @click="hanldeClick(item.title, i)"
     >
       <c-icon :type="item.icon" />
-      <span>{{ item.title }}</span>
+      <span class="c-sidebar__title">{{ item.title }}</span>
     </div>
   </div>
 </template>
@@ -47,7 +47,7 @@ export default {
     color: white;
     font-family: Avenir, Helvetica, Arial, sans-serif;
     cursor: pointer;
-    padding-left:16px;
+    padding-left:30px;
 }
 .c-sidebar__item:hover {
     color: #00b4cf;
@@ -56,5 +56,8 @@ export default {
 .c-sidebar__item--active {
     color: #00b4cf;
     background-color: #435466;
+}
+.c-sidebar__title {
+    margin-left: 16px;
 }
 </style>

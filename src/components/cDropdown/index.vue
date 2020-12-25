@@ -12,7 +12,7 @@
       </div>
       <c-icon
         type="angle-down"
-        :style="{visibility:(showItem?'visible':'hidden')}"
+        :style="{visibility:(showItem?'visible':'hidden'),fontSize:'20px'}"
       />
     </div>
     <div
@@ -48,7 +48,7 @@ export default {
         },
         left: {
             type: Number,
-            default: -90
+            default: -80
         }
     },
     data() {
@@ -73,6 +73,7 @@ export default {
     background-color:white;
     line-height: 40px;
     z-index: 3;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 }
 .c-dropdown__link {
     cursor: pointer;
@@ -81,5 +82,6 @@ export default {
 .c-dropdown__logo {
     vertical-align: middle;
     display: inline-block;
+    padding-right:1em;
 }
 </style>

@@ -39,7 +39,7 @@ export default {
 .agent-source {
     background-color: #e1e4e6;
     margin-right: 1em;
-    padding: 0.2em;
+    padding: 0.3em;
 }
 .agent-source__delete {
     cursor: pointer;

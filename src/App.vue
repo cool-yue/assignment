@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import Layout from "./layout.vue";
+import Layout from "./Layout.vue";
 export default {
     components: {
         Layout

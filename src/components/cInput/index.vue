@@ -50,5 +50,6 @@ export default {
     box-sizing: border-box;
     vertical-align:2px;
     font-size: 20px;
+    width: 130px;
 }
 </style>

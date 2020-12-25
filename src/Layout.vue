@@ -124,25 +124,31 @@ export default {
     text-align:center;
     flex: 0 0 50px;
     height: 50px;
-    padding-right:150px;
     line-height: 50px;
     background-color: white;
 }
 .layout__main {
     flex: 1;
-    width: 80%;
+    width:60%;
     margin: 0 auto;
     display: flex;
     overflow: auto;
+    min-width: 1092px;
 }
 .layout__footer {
-    flex: 0 0 20px;
-    height: 20px;
+    flex: 0 0 30px;
+    height: 30px;
     text-align: center;
+    line-height: 30px;
     background-color: white;;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.3);
+    position:relative;
+    z-index:100;
 }
 .layout-avatar {
-
+    float: right;
+    margin-top: 5px;
+    padding-right:150px;
 }
 .layout__sidebar {
     background-color:#2d4054;
@@ -164,4 +170,20 @@ export default {
     flex: 1;
     overflow: auto;
 }
+/* @media (max-width: 1820px) {
+    .layout__main {
+        width: 65%;
+    }
+}
+@media (min-width: 1680px) {
+    .layout__main {
+        width: 75%;
+    }
+}
+@media (min-width: 1600px) {
+    
+}
+@media (min-width: 1600px) {
+    
+} */
 </style>
