@@ -1,4 +1,4 @@
-const webpackConfig = require('./build/webpack.test.js');
+const webpackConfig = require('./build/webpack.prod.js');
 
 module.exports = function(config) {
     config.set({
@@ -13,6 +13,7 @@ module.exports = function(config) {
         dir: './coverage',
         reporters: [{ type: 'lcov', subdir: '.' }, { type: 'text-summary' }]
       },
+      logLevel: config.LOG_INFO,
       // 不要中间编译的信息
       webpackMiddleware: {
         noInfo: true

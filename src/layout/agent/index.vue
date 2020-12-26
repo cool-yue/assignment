@@ -114,7 +114,6 @@ export default {
     },
     mounted() {
         this.getAgentsAndrender();
-        console.log(document);
     },
     methods: {
         handleAddResource(data) {
@@ -127,8 +126,13 @@ export default {
             this.showModal = value;
         },
         handleSubmitResource(data) {
+            if (
+                !data
+                || data.length === 0
+            ) {
+                return;
+            }
             modifyAgent(this.getId(), this.handlePutRequestData(data)).then(res => {
-                console.log(res);
                 this.showModal = false;
                 this.getAgentsAndrender();
             }).catch(console.error);

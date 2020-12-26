@@ -30,8 +30,6 @@ export default {
     },
     methods: {
         handleInput(e) {
-            console.log("input事件触发");
-            console.log(e.target.value);
             this.$emit("input", e.target.value);
         }
     }

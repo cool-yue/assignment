@@ -78,12 +78,9 @@ export default {
             if (!this.show) {
                 return;
             }
-            // console.log(event.target.getAttribute("class"));
             if (this.isTriggerButton(event.target.getAttribute("class"))) {
                 return;
             }
-            // console.log(event.target.querySelector(".c-modal"));
-            // console.log("在modalnei么", this.isInModal(event.target));
             if (!this.isInModal(event.target)) {
                 this.handleClose();
             }
@@ -95,7 +92,15 @@ export default {
             this.$emit("close", false);
         },
         handleSubmit() {
-            this.$emit("submit", this.source.split(","));
+            const current = this.source;
+            this.$emit("submit", this.normalizeSource(current));
+        },
+        normalizeSource(source) {
+            source = source.replace(/，/g, ",").trim();
+            if (source.length > 0) {
+                return source.split(",");
+            }
+            return [];
         },
         isTriggerButton(clazz) {
             return clazz === "agent-item__plus c-button c-button--plus" || clazz === "icon-plus";

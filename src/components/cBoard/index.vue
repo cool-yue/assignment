@@ -32,10 +32,14 @@ export default {
     display: inline-block;
     padding: 1em;
     background-color: white;
+    display: flex;
 }
 .c-board__item {
     display: inline-block;
     padding: 0 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .c-board__title {
     font-size: 12px;

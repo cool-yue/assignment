@@ -170,20 +170,35 @@ export default {
     flex: 1;
     overflow: auto;
 }
-/* @media (max-width: 1820px) {
+
+@media screen and (max-width: 1820px) {
     .layout__main {
         width: 65%;
     }
 }
-@media (min-width: 1680px) {
+@media screen and (max-width: 1700px) {
+    .layout__main {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 1660px) {
     .layout__main {
         width: 75%;
     }
 }
-@media (min-width: 1600px) {
-    
+@media screen and (max-width: 1550px) {
+    .layout__main {
+        width:75%;
+    }
 }
-@media (min-width: 1600px) {
-    
-} */
+@media screen and (max-width: 1400px) {
+     .layout__main {
+        width: 84%;
+    }
+}
+@media screen and (max-width: 1250px) {
+     .layout__main {
+        width: 100%;
+    }
+}
 </style>

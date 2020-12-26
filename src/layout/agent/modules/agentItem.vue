@@ -5,13 +5,19 @@
     </div>
     <div class="agent-item__info">
       <div class="agent-item__basic">
-        <c-icon type="desktop" />
-        <span>{{ item.name }}</span>
+        <div class="agent-item__name">
+          <c-icon type="desktop" />
+          <span class="agent-item_name--highlight">{{ item.name }}</span>
+        </div>
         <c-badge :type="item.status" />
-        <c-icon type="info" />
-        <span>{{ item.ip }}</span>
-        <c-icon type="folder" />
-        <span>{{ item.location }}</span>
+        <div class="agent-item__ip">
+          <c-icon type="info" />
+          <span>{{ item.ip }}</span>
+        </div>
+        <div class="agent-item__location">
+          <c-icon type="folder" />
+          <span>{{ item.location }}</span>
+        </div>
       </div>
       <div class="agent-item__source">
         <c-button
@@ -19,16 +25,20 @@
           class="agent-item__plus"
           @click="handlePlus"
         />
-        <agent-source
-          v-for="(resource, i) in item.resources"
-          :key="i"
-          :source="resource"
-          :index="i"
-          @click="handleDelete"
-        />
+        <div class="agent-item__resources">
+          <agent-source
+            v-for="(resource, i) in item.resources"
+            :key="i"
+            :source="resource"
+            :index="i"
+            @click="handleDelete"
+          />
+        </div>
+
         <c-button
           v-if="item.status!=='idle'"
           type="deny"
+          class="agent-item__deny"
         >
           Deny
         </c-button>
@@ -116,11 +126,13 @@ export default {
 }
 .agent-item__info {
     flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 .agent-item__source {
   padding-top: 2em;
   display: flex;
-  align-items: center;
+  /* align-items: center; */
 }
 .agent-item__plus {
   height: 28px;
@@ -128,5 +140,23 @@ export default {
   padding-left: 8px;
   padding-right: 8px;
   margin-right: 1em;
+  flex: 0;
+}
+.agent-item_name--highlight {
+  color: #00b4cf;
+  font-weight: bold;
+}
+
+.agent-item__resources{
+  display: flex;
+  white-space: nowrap;
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin-right: 1em;
+}
+.agent-item__deny {
+  margin-left: auto;
+  padding-left: 1em;
 }
 </style>

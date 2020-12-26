@@ -1,10 +1,10 @@
-import CButton from "../../components/cBoard/index.vue";
+import CBoard from "../../components/cBoard/index.vue";
 import Vue from "vue";
 const expect = chai.expect;
 
 describe("cBoard", () => {
     it("board-data", () => {
-        const constructor = Vue.extend(CButton);
+        const constructor = Vue.extend(CBoard);
         const vm = new constructor({
             propsData: {
                 boardData: [
